@@ -94,6 +94,10 @@ Pasos a seguir:
 </pre>
 - Crear el archivo Procfile, que indica al pipeline que hacer
 - Si necesitamos ejecutar el comando npm install --force, crear un archivo .npmrc
+- Commitear en Heroku lanza el pipeline
+<pre>
+  git push -f heroku HEAD:master
+</pre>
 ## Support
 
 
