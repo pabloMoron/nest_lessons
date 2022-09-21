@@ -98,6 +98,11 @@ Pasos a seguir:
 <pre>
   git push -f heroku HEAD:master
 </pre>
+
+- Para ver los logs
+<pre>
+  heroku logs --tail
+</pre>
 ## Support
 
 
