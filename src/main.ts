@@ -12,9 +12,9 @@ async function bootstrap() {
   // Agregamos un middleware de validacion a todo el pipe de las requests
   app.useGlobalPipes(new ValidationPipe())
   app.useGlobalInterceptors(new TransformInterceptor())
-  await app.listen(3000, (): void => {
+  await app.listen(process.env.PORT, (): void => {
     console.log(process.env.STAGE)
-    console.log("Application listening at port 3000")
+    console.log(`Application listening at port ${process.env.PORT}`)
   })
 }
 bootstrap();

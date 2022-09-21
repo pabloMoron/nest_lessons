@@ -58,7 +58,44 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+# Para desplegar en Heroku
+
+Precaucion! Puede ser que en algun momento heroku genere costos para la aplicación.
+
+Pasos a seguir:
+- Crear la cuenta
+- Crear la app
+- Tener el proyecto en un repo git
+- Instalar heroku cli
+
+<pre>npm i -g heroku</pre>
+
+- Agregar un postgres gratuito
+<pre>
+  heroku login
+  heroku addons:create heroku-postgresql:hobby-dev
+  
+  // Esto va a crear un nuevo repositorio remoto
+  heroku git:remote -a app_name
+  
+  //(https://devcenter.heroku.com/articles/nodejs-support#build-behavior)
+  //configuracion con npm y yarn
+  heroku config:set NPM_CONFIG_PRODUCTION=false
+
+  heroku config:set NODE_ENV=production  
+
+  // Configurar variables de entorno, puede ser por cli o la UI de heroku
+  heroku config:set STAGE=prod
+  heroku config:set DB_HOST={db_host}
+  heroku config:set DB_PORT=5432
+  heroku config:set DB_USERNAME={user_name} 
+  heroku config:set DB_DATABASE={database}
+  heroku config:set JWT_SECRET={secret} 
+</pre>
+- Crear el archivo Procfile, que indica al pipeline que hacer
+
 ## Support
+
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
