@@ -6,6 +6,7 @@ import { Task } from './tasks/task.entity';
 import { User } from './auth/user.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configValidationSchema from './config.schema';
+import * as path from 'path';
 
 @Module({
   imports: [
@@ -27,6 +28,9 @@ import configValidationSchema from './config.schema';
           extra:{
             ssl: isProd ? { rejectUnauthorized: false}: null
           },
+          cli:{
+
+          },
           type: 'postgres',
           host: configService.get('DB_HOST'),
           port: configService.get('DB_PORT'),
@@ -35,7 +39,7 @@ import configValidationSchema from './config.schema';
           database: configService.get('DB_DATABASE'),
           autoLoadEntities: true,
           synchronize: true,
-          entities: [Task, User],
+          entities: [path.resolve(__dirname, '**/*.entity{.ts,.js}')],
         };
       },
     }),
